@@ -21,7 +21,8 @@ import { findComment } from "./modules/find-comment/main";
     const result = await fetchQualityGate(
       inputs.hostURL,
       inputs.projectKey,
-      inputs.token
+      inputs.token,
+      context.issue.number
     );
 
     core.setOutput("project-status", result.projectStatus.status);
