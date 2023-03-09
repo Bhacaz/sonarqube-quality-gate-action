@@ -12,7 +12,7 @@ export const fetchQualityGate = async (
     {
       params: {
         projectKey,
-        pullRequest:
+        pullRequest
       },
       auth: {
         username: token,
