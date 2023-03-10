@@ -38,6 +38,8 @@ export const buildReport = (
   SonarQube Quality Gate Result ${projectStatus}
 </summary>
 
+SonarQube result
+
 | Metric | Status | Value | Error Threshold |
 |:------:|:------:|:-----:|:---------------:|
 ${resultTable}
