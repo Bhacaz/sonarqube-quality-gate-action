@@ -33,15 +33,12 @@ export const buildReport = (
 
   const { value: updatedDate, offset: updatedOffset } = getCurrentDateTime();
 
-  return `
-<detail>
-
+  return `<detail>
 <summary>
   <h4>SonarQube Quality Gate Result ${projectStatus}</h4>
 </summary>
-
 </detail>
-- **Result**: ${projectStatus}
+**Result**: ${projectStatus}
 
 | Metric | Status | Value | Error Threshold |
 |:------:|:------:|:-----:|:---------------:|
