@@ -22,7 +22,7 @@ import { findComment } from "./modules/find-comment/main";
       inputs.hostURL,
       inputs.projectKey,
       inputs.token,
-      context.issue.number
+      github.context.issue.number
     );
 
     core.setOutput("project-status", result.projectStatus.status);
