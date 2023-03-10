@@ -44,6 +44,7 @@ export const buildReport = (
 ${resultTable}
 
 [View on SonarQube](${projectURL}&pullRequest=${context.issue.number})
+###### _updated: ${updatedDate} (${updatedOffset})_
 </details>
 `;
 };
