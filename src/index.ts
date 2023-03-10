@@ -54,7 +54,7 @@ import { findComment } from "./modules/find-comment/main";
         repository: `${context.repo.owner}/${context.repo.repo}`,
         issueNumber: context.issue.number,
         commentAuthor: "github-actions[bot]",
-        bodyIncludes: "SonarQube result",
+        bodyIncludes: "SonarQube Quality Gate Result",
         direction: "first",
       });
 
