@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { buildReport } from "./modules/report";
+import { buildReport, reportUrl } from "./modules/report";
 import { ActionInputs } from "./modules/models";
 import { fetchQualityGate } from "./modules/sonarqube-api";
 import { trimTrailingSlash } from "./modules/utils";
@@ -81,14 +81,17 @@ import { findComment } from "./modules/find-comment/main";
     }
 
     let resultMessage = `Quality gate status for \`${inputs.projectKey}\` returned \`${result.projectStatus.status}\``;
+    let reportUrlMessage = `Details: ${reportUrl(inputs.hostURL, inputs.projectKey, context)}`
     if (
       inputs.failOnQualityGateError &&
       result.projectStatus.status === "ERROR"
     ) {
       console.error(resultMessage);
+      core.error(reportUrlMessage);
       core.setFailed(resultMessage);
     } else {
       console.log(resultMessage);
+      core.info(reportUrlMessage);
     }
   } catch (error) {
     if (error instanceof Error) {

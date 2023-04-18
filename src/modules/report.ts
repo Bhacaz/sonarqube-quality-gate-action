@@ -20,13 +20,20 @@ const buildRow = (condition: Condition) => {
   return "|" + rowValues.join("|") + "|";
 };
 
+export const reportUrl = (
+  hostURL: string,
+  projectKey: string,
+  context: Context
+) => {
+  return trimTrailingSlash(hostURL) + `/dashboard?id=${projectKey}&pullRequest=${context.issue.number}`;
+}
+
 export const buildReport = (
   result: QualityGate,
   hostURL: string,
   projectKey: string,
   context: Context
 ) => {
-  const projectURL = trimTrailingSlash(hostURL) + `/dashboard?id=${projectKey}`;
   const projectStatus = getStatusEmoji(result.projectStatus.status);
 
   const resultTable = result.projectStatus.conditions.map(buildRow).join("\n");
@@ -43,7 +50,7 @@ export const buildReport = (
 |:------:|:------:|:-----:|:---------------:|
 ${resultTable}
 
-[View on SonarQube](${projectURL}&pullRequest=${context.issue.number})
+[View on SonarQube](${reportUrl(hostURL, projectKey, context)})
 ###### _updated: ${updatedDate} (${updatedOffset})_
 </details>
 `;
