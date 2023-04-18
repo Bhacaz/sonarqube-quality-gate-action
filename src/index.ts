@@ -81,17 +81,14 @@ import { findComment } from "./modules/find-comment/main";
     }
 
     let resultMessage = `Quality gate status for \`${inputs.projectKey}\` returned \`${result.projectStatus.status}\``;
-    let reportUrlMessage = `Details: ${reportUrl(inputs.hostURL, inputs.projectKey, context)}`
+    resultMessage += `\nDetails: ${reportUrl(inputs.hostURL, inputs.projectKey, context)}`
     if (
       inputs.failOnQualityGateError &&
       result.projectStatus.status === "ERROR"
     ) {
-      console.error(resultMessage);
-      core.error(reportUrlMessage);
       core.setFailed(resultMessage);
     } else {
-      console.log(resultMessage);
-      core.info(reportUrlMessage);
+      core.notice(resultMessage);
     }
   } catch (error) {
     if (error instanceof Error) {
