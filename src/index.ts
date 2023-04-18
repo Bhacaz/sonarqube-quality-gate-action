@@ -18,11 +18,12 @@ import { findComment } from "./modules/find-comment/main";
       githubToken: core.getInput("github-token"),
     };
 
+    const { context } = github;
     const result = await fetchQualityGate(
       inputs.hostURL,
       inputs.projectKey,
       inputs.token,
-      github.context.issue.number
+      context.issue.number
     );
 
     core.setOutput("project-status", result.projectStatus.status);
@@ -37,7 +38,6 @@ import { findComment } from "./modules/find-comment/main";
         );
       }
 
-      const { context } = github;
       const octokit = github.getOctokit(inputs.githubToken);
 
       const reportBody = buildReport(
